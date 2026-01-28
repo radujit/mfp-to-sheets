@@ -10,11 +10,9 @@ from http.cookiejar import CookieJar
 from requests.cookies import create_cookie
 
 
-# ===== CONFIG =====
 COLUMNS = ["Date", "Calories", "Carbs", "Fat", "Protein", "Sodium", "Sugar"]
 
 
-# ===== GOOGLE SHEETS =====
 def gs_client():
     info = json.loads(os.environ["GCP_SA_JSON"])
     scopes = ["https://www.googleapis.com/auth/spreadsheets"]
@@ -22,7 +20,6 @@ def gs_client():
     return gspread.authorize(creds)
 
 
-# ===== MFP CLIENT (COOKIES) =====
 def mfp_client_from_cookies():
     raw = os.environ["MFP_COOKIES"]
 
@@ -43,7 +40,6 @@ def mfp_client_from_cookies():
     return myfitnesspal.Client(cookiejar=cj)
 
 
-# ===== MAIN =====
 def main():
     # Google Sheets
     gc = gs_client()
